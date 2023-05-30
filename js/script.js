@@ -59,8 +59,7 @@ prevButton.addEventListener('click', function(){
         activeIndex = activeIndex - 1;
     }
 
-    document.querySelector('div.carousel-item.active').classList.remove('active');
-    document.querySelectorAll('div.carousel-item')[activeIndex].classList.add('active');
+    imageInteraction();
 });
 
 const nextButton = document.querySelector('div.navigator-next');
@@ -71,8 +70,7 @@ nextButton.addEventListener('click', function(){
         activeIndex = activeIndex + 1;
     }
 
-    document.querySelector('div.carousel-item.active').classList.remove('active');
-    document.querySelectorAll('div.carousel-item')[activeIndex].classList.add('active');
+    imageInteraction();
 });
 
 setInterval(function(){
@@ -82,8 +80,12 @@ setInterval(function(){
         activeIndex = activeIndex + 1;
     }
 
+    imageInteraction();
+}, 3000);
+
+function imageInteraction(){
     document.querySelector('div.carousel-item.active').classList.remove('active');
     document.querySelectorAll('div.carousel-item')[activeIndex].classList.add('active');
     document.querySelector('div.thumbnail-item.active').classList.remove('active');
     document.querySelectorAll('div.thumbnail-item')[activeIndex].classList.add('active');
-}, 3000);
+}
