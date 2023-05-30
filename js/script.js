@@ -1,3 +1,6 @@
+const carouselElement = document.getElementById('carousel-container');
+const thumbnailElement = document.getElementById('thumbnail-container');
+
 const images = [
     {
         image: 'img/01.webp',
@@ -22,3 +25,65 @@ const images = [
     }
 ];
 
+
+function createCarouselElement(image, title, text){
+    carouselElement.innerHTML += 
+    `<div class="carousel-item">
+        <img src="./${image}" alt="Carousel slide image" class="main-image">
+        <div class="img-description" id="description-container">
+            <h2 class="mx-3 my-2">${title}</h2>
+            <p class="ms-3">${text}</p>
+        </div>
+    </div>`;
+    thumbnailElement.innerHTML += `
+    <div class="thumbnail-item">
+        <img src="./${image}" alt="Carousel Thumbnail image" class="thumbnail">
+    </div>`
+    return createCarouselElement;
+};
+
+let activeIndex = 2;
+
+images.forEach(element => {
+    createCarouselElement(element.image, element.title, element.text)
+});
+
+document.querySelectorAll('div.carousel-item')[activeIndex].classList.add('active');
+document.querySelectorAll('div.thumbnail-item')[activeIndex].classList.add('active');
+
+const prevButton = document.querySelector('div.navigator-prev');
+prevButton.addEventListener('click', function(){
+    if (activeIndex == 0 ) {
+        activeIndex = images.length - 1;
+    } else {
+        activeIndex = activeIndex - 1;
+    }
+
+    document.querySelector('div.carousel-item.active').classList.remove('active');
+    document.querySelectorAll('div.carousel-item')[activeIndex].classList.add('active');
+});
+
+const nextButton = document.querySelector('div.navigator-next');
+nextButton.addEventListener('click', function(){
+    if (activeIndex == images.length - 1 ) {
+        activeIndex = 0;
+    } else {
+        activeIndex = activeIndex + 1;
+    }
+
+    document.querySelector('div.carousel-item.active').classList.remove('active');
+    document.querySelectorAll('div.carousel-item')[activeIndex].classList.add('active');
+});
+
+setInterval(function(){
+    if (activeIndex == images.length - 1 ) {
+        activeIndex = 0;
+    } else {
+        activeIndex = activeIndex + 1;
+    }
+
+    document.querySelector('div.carousel-item.active').classList.remove('active');
+    document.querySelectorAll('div.carousel-item')[activeIndex].classList.add('active');
+    document.querySelector('div.thumbnail-item.active').classList.remove('active');
+    document.querySelectorAll('div.thumbnail-item')[activeIndex].classList.add('active');
+}, 3000);
