@@ -8,3 +8,43 @@
 
 /* Styles */
 
+.carousel-container{
+    height: 700px;
+    width: 80%;
+    background-color: #c1c1c1;
+    position: relative;
+}
+
+.thumbnail-container{
+    width: 20%;
+    height: 100%;
+    background-color: #000000;
+    position: relative;
+}
+
+img.thumbnail{
+    width: 100%;
+    height: calc(700px/5);
+    object-fit:cover;
+}
+
+img.main-image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+div.img-description{
+    width: 100%;
+    height: 125px;
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.2);
+    position: absolute;
+    bottom:0;
+}
+
+h2,
+p{
+    color: #FFFFFF;
+}
+
